@@ -36,7 +36,7 @@ def calculate_continuous_comp_pv(fv: float, r: float, t: int) -> float:
     return fv * math.exp(-r * t)
 
 
-# ----------- ANNUITIES -----------
+# ---------------- ANNUITIES ----------------
 
 def calculate_future_ordinary_annuity(C: float, r: float, n: int) -> float:
     """
@@ -129,7 +129,9 @@ def calculate_bond_valuation(face_value: float, coupon_rate: float, years: int, 
     
     return pv_total
 
+
 # --------------- YIELD TO MATURITY --------------
+
 def calculate_bond_valuation_from_ytm(face_value: float, coupon_rate: float, years: int, ytm: float, frequency: int = 1) -> float:
     """
     Calculates the fair value of a bond using its cash flows and yield to maturity as the discount rate. (Identical to the method above)
