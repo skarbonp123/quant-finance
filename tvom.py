@@ -128,3 +128,13 @@ def calculate_bond_valuation(face_value: float, coupon_rate: float, years: int, 
     _, pv_total = discounted_cash_flow(cash_flows, discount_rate / frequency)
     
     return pv_total
+
+
+def calculate_bond_valuation_from_ytm(face_value: float, coupon_rate: float, years: int, ytm: float, frequency: int = 1) -> float:
+    """
+    Calculates the fair value of a bond using its cash flows and yield to maturity as the discount rate. (Identical to the method above)
+    """
+    cash_flows = generate_bond_cash_flow(face_value, coupon_rate, years, frequency)
+    _, pv_total = discounted_cash_flow(cash_flows, ytm / frequency)
+    
+    return pv_total
