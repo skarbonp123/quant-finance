@@ -129,7 +129,7 @@ def calculate_bond_valuation(face_value: float, coupon_rate: float, years: int, 
     
     return pv_total
 
-
+# --------------- YIELD TO MATURITY --------------
 def calculate_bond_valuation_from_ytm(face_value: float, coupon_rate: float, years: int, ytm: float, frequency: int = 1) -> float:
     """
     Calculates the fair value of a bond using its cash flows and yield to maturity as the discount rate. (Identical to the method above)
@@ -138,3 +138,29 @@ def calculate_bond_valuation_from_ytm(face_value: float, coupon_rate: float, yea
     _, pv_total = discounted_cash_flow(cash_flows, ytm / frequency)
     
     return pv_total
+
+
+def approximate_ytm(face_value: float, coupon_rate: float, years: int, price: float, frequency: int = 1, tolerance: float = 1e-6, max_iterations: int = 1000) -> float:
+    """
+    Approximates the Yield to Maturity (YTM) given market price and bond details.
+    """
+    low = 0.0001
+    high = 1.0
+    iterations = 0
+
+    while (iterations < max_iterations):
+        
+        ytm = (high + low ) / 2
+        ytm_price = calculate_bond_valuation_from_ytm(face_value, coupon_rate, years, ytm, frequency)
+        
+        if (abs(ytm_price - price) < tolerance):
+            return ytm
+        
+        if (ytm_price < price):
+            high = ytm
+        else:
+            low = ytm
+        
+        iterations += 1
+
+    return ytm
