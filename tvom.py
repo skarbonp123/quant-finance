@@ -95,3 +95,36 @@ def discounted_cash_flow(cash_flows: list[float], r: float) -> list:
 
     return [pv_values, pv_total]
 
+
+# --------- BOND CASH FLOW AND VALUATION ---------
+
+def generate_bond_cash_flow(face_value: float, coupon_rate: float, years: int, frequency: int = 1) -> list[float]:
+    """ 
+    Generates the list of cash flows for a coupon bond.
+    
+    face_value: Amount repaid at maturity
+    coupon_rate: Annual coupon rate (e.g., 0.05 for 5%)
+    years: Total years to maturity
+    frequency: How often coupons are paid (default: 1 for annual)
+    
+    Returns: List of cash flows in order
+    """
+    cash_flows = []
+    coupon_payment = (face_value * coupon_rate) / frequency
+    
+    for i in range(0, (frequency * years)):
+        cash_flows.append(coupon_payment)
+
+    cash_flows[-1] += face_value
+
+    return cash_flows
+
+
+def calculate_bond_valuation(face_value: float, coupon_rate: float, years: int, discount_rate: float, frequency: int = 1) -> float:
+    """
+    Calculates the fair value of a bond using its cash flows and a given discount rate.
+    """
+    cash_flows = generate_bond_cash_flow(face_value, coupon_rate, years, frequency)
+    _, pv_total = discounted_cash_flow(cash_flows, discount_rate / frequency)
+    
+    return pv_total
