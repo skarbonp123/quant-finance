@@ -74,7 +74,7 @@ def calculate_present_annuity_due(C: float, r: float, n: int) -> float:
     return calculate_present_ordinary_annuity(C, r, n) * (1 + r)
 
 
-# --------- DISCOUNTED CASH FLOW ---------
+# ---------------- DISCOUNTED CASH FLOW ----------------
 
 def discounted_cash_flow(cash_flows: list[float], r: float) -> list:
     """
@@ -96,7 +96,7 @@ def discounted_cash_flow(cash_flows: list[float], r: float) -> list:
     return [pv_values, pv_total]
 
 
-# --------- BOND CASH FLOW AND VALUATION ---------
+# -------------- BOND CASH FLOW AND VALUATION --------------
 
 def generate_bond_cash_flow(face_value: float, coupon_rate: float, years: int, frequency: int = 1) -> list[float]:
     """ 
@@ -130,7 +130,7 @@ def calculate_bond_valuation(face_value: float, coupon_rate: float, years: int, 
     return pv_total
 
 
-# --------------- YIELD TO MATURITY --------------
+# ------------------ YIELD TO MATURITY ------------------
 
 def calculate_bond_valuation_from_ytm(face_value: float, coupon_rate: float, years: int, ytm: float, frequency: int = 1) -> float:
     """

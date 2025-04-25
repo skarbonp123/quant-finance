@@ -13,9 +13,9 @@ print()
 
 
 face_value = 1000
-coupon_rate = 0.06
-years = 5
-price = 950
+coupon_rate = 0.04
+years = 10
+price = 1000
 
 ytm = approximate_ytm(face_value, coupon_rate, years, price)
 print(f"Approximate YTM: {ytm * 100 :.3f}%")
